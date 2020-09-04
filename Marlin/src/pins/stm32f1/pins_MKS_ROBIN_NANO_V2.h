@@ -204,7 +204,7 @@
   #define MT_DET_1_PIN                      PA4   // LVGL UI FILAMENT RUNOUT1 PIN
   #define MT_DET_2_PIN                      PE6   // LVGL UI FILAMENT RUNOUT2 PIN
   #define MT_DET_PIN_INVERTING             false  // LVGL UI filament RUNOUT PIN STATE
- 
+
   #define WIFI_IO0_PIN                      PC13  // MKS ESP WIFI IO0 PIN
   #define WIFI_IO1_PIN                      PC7   // MKS ESP WIFI IO1 PIN
   #define WIFI_RESET_PIN                    PE9   // MKS ESP WIFI RESET PIN
@@ -278,19 +278,11 @@
   #define TOUCH_BUTTONS_HW_SPI
   #define TOUCH_BUTTONS_HW_SPI_DEVICE          1
 
-  #ifndef TFT_WIDTH
-    #define TFT_WIDTH                        480
-  #endif
-  #ifndef TFT_HEIGHT
-    #define TFT_HEIGHT                       320
-  #endif
-
-  #define LCD_READ_ID                       0xD3
   #define LCD_USE_DMA_SPI
 
 #endif
 
-#if ENABLED(TFT_LVGL_UI_SPI)
+#if ENABLED(TFT_LVGL_UI) || ENABLED(TFT_COLOR_UI)
 
   // LVGL
 
@@ -299,7 +291,9 @@
   #define XPT2046_X_OFFSET                   514
   #define XPT2046_Y_OFFSET                   -24
 
-#elif ENABLED(SPI_GRAPHICAL_TFT)
+  #define TFT_BUFFER_SIZE                14400
+
+#elif ENABLED(TFT_CLASSIC_UI)
 
   // Emulated DOGM SPI
 
@@ -329,23 +323,6 @@
 
   #define LCD_PINS_ENABLE                   PD13
   #define LCD_PINS_RS                       PC6
-
-#elif ENABLED(TFT_480x320_SPI)
-  #ifndef XPT2046_X_CALIBRATION
-    #define XPT2046_X_CALIBRATION         -17253
-  #endif
-  #ifndef XPT2046_Y_CALIBRATION
-    #define XPT2046_Y_CALIBRATION          11579
-  #endif
-  #ifndef XPT2046_X_OFFSET
-    #define XPT2046_X_OFFSET                 514
-  #endif
-  #ifndef XPT2046_Y_OFFSET
-    #define XPT2046_Y_OFFSET                 -24
-  #endif
-
-  #define TFT_DRIVER                      ST7796
-  #define TFT_BUFFER_SIZE                  14400
 
 #endif
 
