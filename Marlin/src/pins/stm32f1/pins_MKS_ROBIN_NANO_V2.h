@@ -272,19 +272,11 @@
   #define TOUCH_BUTTONS_HW_SPI
   #define TOUCH_BUTTONS_HW_SPI_DEVICE          1
 
-  #ifndef TFT_WIDTH
-    #define TFT_WIDTH                        480
-  #endif
-  #ifndef TFT_HEIGHT
-    #define TFT_HEIGHT                       320
-  #endif
-
-  #define LCD_READ_ID                       0xD3
   #define LCD_USE_DMA_SPI
 
 #endif
 
-#if ENABLED(TFT_LVGL_UI_SPI)
+#if ENABLED(TFT_LVGL_UI) || ENABLED(TFT_COLOR_UI)
 
   // LVGL
 
@@ -293,7 +285,9 @@
   #define XPT2046_X_OFFSET                   514
   #define XPT2046_Y_OFFSET                   -24
 
-#elif ENABLED(SPI_GRAPHICAL_TFT)
+  #define TFT_BUFFER_SIZE                14400
+
+#elif ENABLED(TFT_CLASSIC_UI)
 
   // Emulated DOGM SPI
 
@@ -310,36 +304,12 @@
     #define XPT2046_Y_OFFSET                 -18
   #endif
 
-  #ifndef GRAPHICAL_TFT_UPSCALE
-    #define GRAPHICAL_TFT_UPSCALE              3
-  #endif
-  #ifndef TFT_PIXEL_OFFSET_Y
-    #define TFT_PIXEL_OFFSET_Y                32
-  #endif
-
   #define BTN_ENC                           PE13
   #define BTN_EN1                           PE8
   #define BTN_EN2                           PE11
 
   #define LCD_PINS_ENABLE                   PD13
   #define LCD_PINS_RS                       PC6
-
-#elif ENABLED(TFT_480x320_SPI)
-  #ifndef XPT2046_X_CALIBRATION
-    #define XPT2046_X_CALIBRATION         -17253
-  #endif
-  #ifndef XPT2046_Y_CALIBRATION
-    #define XPT2046_Y_CALIBRATION          11579
-  #endif
-  #ifndef XPT2046_X_OFFSET
-    #define XPT2046_X_OFFSET                 514
-  #endif
-  #ifndef XPT2046_Y_OFFSET
-    #define XPT2046_Y_OFFSET                 -24
-  #endif
-
-  #define TFT_DRIVER                      ST7796
-  #define TFT_BUFFER_SIZE                  14400
 
 #endif
 
